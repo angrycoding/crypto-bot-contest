@@ -1,0 +1,112 @@
+
+
+@function adaptiveSize($px) {
+    @return calc($px / 393 * 100vmin);
+}
+
+@mixin allsize($size) {
+	min-width: $size;
+	min-height: $size;
+	max-width: $size;
+	max-height: $size;
+}
+
+
+@font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 300;
+	src: url("../public/fonts/SFProText-Light.ttf");
+  }
+  @font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../public/fonts/SFProText-Regular.ttf");
+  }
+  @font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 500;
+	src: url("../public/fonts/SFProText-Medium.ttf");
+  }
+  @font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 600;
+	src: url("../public/fonts/SFProText-SemiBold.ttf");
+  }
+  @font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 700;
+	src: url("../public/fonts/SFProText-Bold.ttf");
+  }
+  @font-face {
+	font-family: "SF Pro Text";
+	font-style: normal;
+	font-weight: 900;
+	src: url("../public/fonts/SFProText-Heavy.ttf");
+  }
+
+html {
+	padding: 0px !important;
+	margin: 0px !important;
+}
+  
+* {
+	box-sizing: border-box !important;
+	font-family: 'SF Pro Text' !important;
+	// overflow-x: hidden;
+}
+
+.appWrapper {
+	position: fixed;
+	inset: 0px;
+	display: flex;
+	flex-direction: column;
+	& > *:first-child {
+		flex: 1;
+		position: relative;
+	}
+}
+
+
+
+$darkHeaderColor: #1E1E1EBF;
+$lightHeaderColor: #F1F1F2BF;
+
+:root[data-light] {
+
+	--headerColor: #{$lightHeaderColor};
+	--backgroundColor: #FFFFFF;
+	--textColor: #000000;
+	--dividerColor: #EFEFF3;
+	--overlayColor: #EFEFF3;
+	--closeButtonBg: #E3E3E8;
+	--closeButtonFg: #9E9EA1;
+	--switchBg: #EFEFF3;
+	--toastBg: #2D2D2DCC;
+	--searchFieldBg:  #E4E4E4;
+	background-color: var(--backgroundColor);
+}
+
+:root[data-dark] {
+	--headerColor: #{$darkHeaderColor};
+	--backgroundColor: #1C1C1E;
+	--textColor: #FFFFFF;
+	--dividerColor: #000000;
+	--overlayColor: #1C1C1E;
+	--closeButtonBg: #2C2C2E;
+	--closeButtonFg: #8E8E93;
+	--switchBg: #000000;
+	--toastBg: #000000CC;
+	--searchFieldBg: #00000080;
+	background-color: var(--backgroundColor);
+}
+
+
+:export {
+	darkHeaderColor: $darkHeaderColor;
+	lightHeaderColor: $lightHeaderColor;
+}

@@ -1,0 +1,68 @@
+@import '../../index.module.scss';
+
+
+.wrapper {
+
+
+	
+	border: 2px solid transparent;
+	display: inline-flex;
+	font-size: adaptiveSize(14);
+
+	border-radius: adaptiveSize(99);
+	position: relative;
+	font-weight: 590;
+	background-color: var(--switchBg);
+
+
+	& > * {
+		position: relative;
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--closeButtonFg);
+		transition-property: color;
+		transition-duration: 250ms;
+		transition-timing-function: linear;
+
+		min-height: adaptiveSize(32);
+		min-width: adaptiveSize(32);
+
+		
+		// min-width: ;
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0px;
+			background-color: currentColor;
+			mask-image: var(--image);
+			mask-repeat: no-repeat;
+			mask-position: center;
+			mask-size: 50%;
+		}
+	}
+
+
+	&::before {
+		content: '';
+		background-color: var(--backgroundColor);
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		bottom: 0px;
+		width: var(--itemSize);
+		border-radius: inherit;
+		transition-property: transform left;
+		transition-duration: 250ms;
+		transition-timing-function: linear;
+		box-shadow: 0px 3px 1px 0px #0000000A;
+		left: var(--itemPos);
+		transform: translateX(calc(var(--itemPos) * -1));
+	}
+
+	& > *[data-active] {
+		color: var(--textColor);
+	}
+
+}

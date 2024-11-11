@@ -1,0 +1,27 @@
+@import '../../index.module.scss';
+
+.noItems {
+	text-align: center;
+	background-color: var(--closeButtonBg);
+	padding-bottom: adaptiveSize(32);
+	padding-top: adaptiveSize(32);
+	padding-left: adaptiveSize(16);
+	padding-right: adaptiveSize(16);
+	border-radius: 12px;
+	display: flex;
+	color: var(--textColor);
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	font-size: adaptiveSize(17);
+	gap: adaptiveSize(16);
+
+	& > *:first-child {
+		@include allsize(adaptiveSize(100));
+	}
+
+	& > *:last-child {
+		color: #007AFF;
+	}
+}

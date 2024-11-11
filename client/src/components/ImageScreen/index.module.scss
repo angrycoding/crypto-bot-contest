@@ -1,0 +1,78 @@
+@import '../../index.module.scss';
+
+.wrapper {
+	position: fixed;
+	inset: 0px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: adaptiveSize(16) solid transparent;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	color: var(--textColor);
+}
+
+.image {
+	@include allsize(adaptiveSize(100));
+	aspect-ratio: 1/1;
+	margin-bottom: adaptiveSize(16);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.title {
+	font-size: adaptiveSize(24);
+	font-weight: 600;
+	margin-bottom: adaptiveSize(8);
+}
+
+.subtitle {
+	font-size: adaptiveSize(17);
+	font-weight: 400;
+}
+
+.toast {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: var(--toastBg);
+	border-radius: 14px;
+	color: white;
+	padding-top: adaptiveSize(9);
+	padding-bottom: adaptiveSize(9);
+	padding-left: adaptiveSize(16);
+	padding-right: adaptiveSize(16);
+	display: flex;
+	text-align: left;
+	align-items: center;
+	gap: adaptiveSize(13);
+	line-height: adaptiveSize(18);
+	letter-spacing: -0.15px;
+	font-size: adaptiveSize(14);
+	&::before {
+		content: '';
+		background-image: var(--image);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		@include allsize(adaptiveSize(28));
+	}
+	& > div:nth-child(1) {
+		flex: 1;
+		& > *:nth-child(1) {
+			font-weight: 590;
+		}
+		& > *:nth-child(2) {
+			font-weight: 400;
+		}
+	}
+	& > div:nth-child(2) {
+		color: #5AC8FA;
+		font-weight: 400;
+		font-size: adaptiveSize(17);
+		letter-spacing: -0.43px;
+	}
+}

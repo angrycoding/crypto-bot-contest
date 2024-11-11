@@ -1,0 +1,85 @@
+$animationSpeed: 250ms;
+$animationScale: 0.9;
+$animationBlur: 5px;
+
+@keyframes animateScaleDec {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale($animationScale);
+	}
+}
+
+@keyframes animateScaleInc {
+	from {
+		transform: scale($animationScale);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+
+@keyframes animateHide {
+	from {
+		opacity: 1;
+		filter: blur(0px);
+	}
+	to {
+		opacity: 0;
+		filter: blur($animationBlur);
+	}
+}
+
+@keyframes animateShow {
+	from {
+		opacity: 0;
+		filter: blur($animationBlur);
+	}
+	to {
+		opacity: 1;
+		filter: blur(0px);
+	}
+}
+
+
+.foobar1 {
+	animation-name: animateHide, animateScaleDec;
+	animation-duration: $animationSpeed, $animationSpeed;
+	animation-fill-mode: forwards, none;
+}
+
+.foobar2 {
+	animation-name: animateShow, animateScaleInc;
+	animation-duration: $animationSpeed, $animationSpeed;
+	animation-fill-mode: forwards, none;
+}
+
+@keyframes move {
+	from {
+		// left: auto;
+		// top: auto;
+		// width: auto;
+		// height: auto;
+	}
+	to {
+		top: var(--toTop);
+		left: var(--toLeft);
+		width: var(--toWidth);
+		height: var(--toHeight);
+		max-width: var(--toWidth);
+		max-height: var(--toHeight);
+		min-width: var(--toWidth);
+		min-height: var(--toHeight);
+	}
+}
+
+.superClone {
+	animation-name: move;
+	animation-duration: $animationSpeed;
+	animation-fill-mode: forwards;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}

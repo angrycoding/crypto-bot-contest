@@ -1,0 +1,75 @@
+@import '../../index.module.scss';;
+
+.avatar {
+
+	min-width: 100%;
+	min-height: 100%;
+	aspect-ratio: 1/1;
+	position: relative;
+	border-radius: 100%;
+
+	.placeholder {
+		position: absolute;
+		inset: 0px;
+		width: 100%;
+		border-radius: inherit;
+		background-color: var(--closeButtonBg);
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0px;
+			background-color: var(--closeButtonFg);
+			border-radius: inherit;
+			mask-image: url('./telegram-deleted-user-ghost-icon-seeklogo.svg');
+			mask-position: center;
+			mask-repeat: no-repeat;
+			mask-size: 60%;
+			opacity: 0.5;
+		}
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0px;
+		border-radius: inherit;
+		background-image: var(--image);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	span {
+		
+		@include allsize(adaptiveSize(18));
+
+		position: absolute;
+		bottom: -2px;
+		right: -2px;
+
+		display: block;
+		z-index: 1;
+		border-radius: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+
+
+		border: adaptiveSize(2) solid white;
+
+		&.send {
+			background-color: #35C759;
+			background-size: 80%;
+			background-image: url('./sent.svg');
+		}
+		
+		&.buy {
+			background-color: #007AFF;
+			background-size: 70%;
+			background-image: url('./buy.svg');
+		}
+
+	}
+	
+
+}
+

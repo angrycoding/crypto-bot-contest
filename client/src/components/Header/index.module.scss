@@ -1,0 +1,30 @@
+@import '../../index.module.scss';
+
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	
+	.image {
+		margin-bottom: adaptiveSize(16);
+		@include allsize(adaptiveSize(48));
+		background-image: url('./headericon.svg');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+	
+	.title {
+		font-weight: 600;
+		font-size: adaptiveSize(24);
+		margin-bottom: adaptiveSize(12);
+		color: var(--textColor);
+	}
+	
+	.subtitle {
+		font-size: adaptiveSize(17);
+		color: #8E8E93;
+	}
+}
+

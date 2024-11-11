@@ -1,0 +1,6 @@
+certs
+dist
+package-lock.json
+client/public/avatars
+yarn.lock
+node_modules

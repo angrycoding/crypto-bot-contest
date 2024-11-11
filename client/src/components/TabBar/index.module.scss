@@ -1,0 +1,79 @@
+@import '../../index.module.scss';
+
+@keyframes label {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.tabbar {
+
+	z-index: 344343;
+
+	// padding-top: adaptiveSize(4);
+	background-color: var(--headerColor);
+	backdrop-filter: blur(100px);
+
+	max-height: var(--tabbarheight);
+	min-height: var(--tabbarheight);
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	user-select: none;
+
+	font-size: adaptiveSize(10);
+	font-weight: 500;
+	display: flex;
+
+	& > * {
+		flex: 1;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: adaptiveSize(4);
+		color: #959595;
+
+		& > *:first-child {
+			min-height: adaptiveSize(26);
+			max-height: adaptiveSize(26);
+		}
+
+
+
+		* {
+			fill: currentColor;
+		}
+	}
+
+	& > *[data-active] {
+		color: #0080fa;
+		span {
+			animation-name: label;
+			animation-duration: 250ms;
+		}
+	}
+
+}
+
+.tabbarHide {
+	display: none;
+}
+
+:root:has(.tabbar) {
+	--tabbarheight: #{adaptiveSize(50)};
+}
+
+:root:has(.tabbarHide) {
+	--tabbarheight: 0px;
+	.tabbar {
+		display: none;
+	}
+}

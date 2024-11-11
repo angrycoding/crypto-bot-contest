@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script>
+		if (!window.Telegram) {
+			Telegram = {
+				WebApp: {
+					onEvent: () => {},
+					disableVerticalSwipes: () => {},
+					setHeaderColor: () => {},
+					setBottomBarColor: () => {},
+					setBackgroundColor: () => {},
+					BackButton: {
+						show: () => {},
+						hide: () => {}
+					},
+					MainButton: {
+						show: () => {},
+						hide: () => {},
+						setText: () => {}
+					},
+					SecondaryButton: {
+						show: () => {},
+						hide: () => {},
+						setText: () => {}
+					}
+				}
+			}
+		}
+	</script>
+    <title>Gift App</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

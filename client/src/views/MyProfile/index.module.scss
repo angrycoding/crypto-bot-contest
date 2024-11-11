@@ -1,0 +1,64 @@
+@import '../../index.module.scss';
+
+.themeSwitch {
+	position: absolute;
+	z-index: 1;
+	left: adaptiveSize(16);
+	top: adaptiveSize(6);
+}
+
+.langSwitch {
+	z-index: 1;
+	position: absolute;
+	top: adaptiveSize(6);
+	right: adaptiveSize(16);
+}
+
+.recentActions {
+	margin-top: adaptiveSize(28);
+}
+
+.recentAction {
+
+
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding-bottom: adaptiveSize(9);
+	padding-top: adaptiveSize(9);
+	gap: adaptiveSize(12);
+
+
+	&:not(:last-child)::after {
+		background-color: #3C3C435C;
+		height: 1px;
+		left: adaptiveSize(calc(40 + 12));
+		content: '';
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+	}
+	
+	.giftName {
+		font-weight: 500;
+		font-size: adaptiveSize(17);
+		line-height: adaptiveSize(22);
+	}
+
+	.operation {
+		font-size: adaptiveSize(13);
+		line-height: adaptiveSize(16);
+		font-weight: 400;
+		color: var(--closeButtonFg);
+	}
+	
+}
+
+.giftAvatar {
+	background-color: var(--overlayColor);
+	min-width: adaptiveSize(40);
+	min-height: adaptiveSize(40);
+	background-position: center;
+	background-size: contain;
+	border-radius: 10px;
+}
