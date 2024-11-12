@@ -31,6 +31,10 @@ const startWebhookServer = (database: Db, onPurchase: (
 ) => void) => {
 
 	const server = HTTP.createServer((request, response) => {
+
+		if (!request.url && !Settings.BOT_HOOK_URL_SET.endsWith(request.url)) {
+			return response.end();
+		}
 		
 		let body: any = '';
 		

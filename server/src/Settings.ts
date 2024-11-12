@@ -41,11 +41,15 @@ const Settings = {
 
 
 	WEBHOOK_SERVER_LISTEN_PORT: 8094,
-	BOT_HOOK_URL_SET: "https://giftapp.videotam.ru/webhook/",
-
+	BOT_HOOK_URL_SET: "https://giftapp.videotam.ru/webhook/some-random-id",
 
 	WELCOME_IMAGE_FILE_ID: "AgACAgIAAxkDAAIBq2cvZc-8gxYr0lTFuf2qe9wEJC_5AAIF5zEbQlB5SWvgZOsBWI9OAQADAgADcwADNgQ",
-	SEND_GIFT_THUMBNAIL_URL: 'https://play-lh.googleusercontent.com/JFsWuM7yWlTxhoddyAA5eLAaS92hjJz5-hAa-82o8hMr2Kbeg8yDzIounvNSNCTYNg',
+	
+	SEND_GIFT_THUMBNAIL_URL: (
+		isProduction ? 
+		'https://giftapp.videotam.ru/images/inlineQueryImage.png' :
+		'https://play-lh.googleusercontent.com/JFsWuM7yWlTxhoddyAA5eLAaS92hjJz5-hAa-82o8hMr2Kbeg8yDzIounvNSNCTYNg'
+	)
 	
 }
 
