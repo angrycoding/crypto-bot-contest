@@ -6,6 +6,14 @@ All the contest files (designs, animations and task description) is on the conte
 
 See the showcase on the following video: https://www.youtube.com/watch?v=hGgdoX31LNc
 
+Here are couple of screenshots:
+
+![photo_2024-11-12_19-32-54](https://github.com/user-attachments/assets/a7436872-394e-42bc-8355-f49fda86e5fe)
+![photo_2024-11-12_19-32-49](https://github.com/user-attachments/assets/01fff935-871b-4f25-a1c4-b76bb7f0ad44)
+![photo_2024-11-12_19-32-44](https://github.com/user-attachments/assets/00330b0b-0544-4e27-9968-bd1c624cd476)
+![photo_2024-11-12_19-32-39](https://github.com/user-attachments/assets/6da8a23c-030b-4f3c-8778-527f1b7fd846)
+
+
 ## Lottie converter
 
 Used to convert lottie animations provided by the organizers into animated pngs. Why? Because lottie animations (at least provided ones) are quite heavy and CPU consuming while animating, well in case if you have 4 items then it's okay, but if you have 10 - 20 then it's a problem. So I've decided to convert lottie to apng, which is running with no problem.
