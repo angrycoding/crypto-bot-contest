@@ -4,6 +4,8 @@ https://t.me/CryptoBotRU/365
 
 All the contest files (designs, animations and task description) is on the contest-files dir.
 
+https://github.com/user-attachments/assets/3e907795-5e10-4668-8d41-7b6af870c6db
+
 ## Lottie converter
 
 Used to convert lottie animations provided by the organizers into animated pngs. Why? Because lottie animations (at least provided ones) are quite heavy and CPU consuming while animating, well in case if you have 4 items then it's okay, but if you have 10 - 20 then it's a problem. So I've decided to convert lottie to apng, which is running with no problem.
