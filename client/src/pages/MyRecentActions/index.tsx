@@ -12,10 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import Preloader from '../../components/Preloader';
 import User from '../../../../shared/User';
 
-const setUser = (...args: any[]) => {
-
-}
-
 const MyRecentActions = () => {
 
 	const navigate = useNavigate();
