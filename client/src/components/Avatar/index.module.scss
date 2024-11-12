@@ -41,7 +41,7 @@
 
 	span {
 		
-		@include allsize(adaptiveSize(18));
+		@include allsize(18rem);
 
 		position: absolute;
 		bottom: -2px;
@@ -54,7 +54,7 @@
 		background-repeat: no-repeat;
 
 
-		border: adaptiveSize(2) solid white;
+		border: 2rem solid white;
 
 		&.send {
 			background-color: #35C759;

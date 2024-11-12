@@ -1,16 +1,20 @@
 @import '../../index.module.scss';
 
 .wrapper {
-	position: absolute;
+	position: fixed;
 	inset: 0px;
 	display: flex;
 	flex-direction: column;
-	// border-left: adaptiveSize(16) solid transparent;
-	// border-right: adaptiveSize(16) solid transparent;;
+	overflow: auto;
+}
+
+.noItems {
+	margin-left: 16rem;
+	margin-right: 16rem;
 }
 
 .header {
-	margin-top: adaptiveSize(8);
+	margin-top: 8rem;
 	display: flex;
 	text-align: center;
 	align-items: center;
@@ -19,10 +23,10 @@
 
 	.avatarWrapper {
 		position: relative;
-		margin-bottom: adaptiveSize(23);
+		margin-bottom: 23rem;
 		
 		.avatar {
-			@include allsize(adaptiveSize(100));
+			@include allsize(100rem);
 		}
 
 		.number {
@@ -32,20 +36,20 @@
 			transform: translate(-50%, 50%);
 			background-color: #8E8E93;
 			display: inline-flex;
-			font-size: adaptiveSize(14);
-			line-height: adaptiveSize(22);
+			font-size: 14rem;
+			line-height: 22rem;
 			font-weight: 500;
 			color: white;
 			border: 2px solid white;
 			align-items: center;
 			justify-content: center;
 			align-content: center;
-			line-height: adaptiveSize(22);
-			max-height: adaptiveSize(22);
-			min-height: adaptiveSize(22);
-			border-radius: adaptiveSize(100);
-			padding-left: adaptiveSize(8);
-			padding-right: adaptiveSize(8);
+			line-height: 22rem;
+			max-height: 22rem;
+			min-height: 22rem;
+			border-radius: 100rem;
+			padding-left: 8rem;
+			padding-right: 8rem;
 		}
 	}
 
@@ -53,31 +57,31 @@
 		display: flex;
 		font-weight: 600;
 		color: var(--textColor);
-		margin-bottom: adaptiveSize(4);
-		font-size: adaptiveSize(24);
+		margin-bottom: 4rem;
+		font-size: 24rem;
 	}
 
 	.giftsReceived {
-		margin-bottom: adaptiveSize(24);
+		margin-bottom: 24rem;
 		font-weight: 400;
-		font-size: adaptiveSize(17);
+		font-size: 17rem;
 		color: var(--closeButtonFg);
 	}
 
 	.recentActions {
 		display: flex;
-		gap: adaptiveSize(7.5);
+		gap: 7.5rem;
 		color: #007AFF;
 		align-items: center;
 		justify-content: center;
 		align-content: center;
 		font-weight: 510;;
-		font-size: adaptiveSize(17);
-		margin-bottom: adaptiveSize(24);
+		font-size: 17rem;
+		margin-bottom: 24rem;
 		&::before {
 			content: '';
 			display: block;
-			@include allsize(adaptiveSize(16));
+			@include allsize(16rem);
 			background-image: url('./clock.svg');
 			background-position: center;
 			background-repeat: no-repeat;
@@ -88,28 +92,29 @@
 }
 
 .scrollbox {
-	padding-left: adaptiveSize(16);
-	padding-right: adaptiveSize(16);
+	padding-left: 16rem;
+	padding-right: 16rem;
 	flex: 1;
+	// overflow: auto;
 }
 
 .grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	overflow: auto;
-	row-gap: adaptiveSize(8);
-	column-gap: adaptiveSize(8);
-	padding-bottom: calc( adaptiveSize(16) + var(--tabbarheight) );
+	row-gap: 8rem;
+	column-gap: 8rem;
+	padding-bottom: calc( 16rem + var(--tabbarheight) );
 	color: var(--textColor);
 	
 	
 	& > * {
 		border-radius: 12px;
 		background-color: var(--closeButtonBg);
-		padding: adaptiveSize(12);
-		// padding-right: adaptiveSize(16);
-		padding-top: adaptiveSize(30);
-		// padding-bottom: adaptiveSize(12);
+		padding: 12rem;
+		// padding-right: 16rem;
+		padding-top: 30rem;
+		// padding-bottom: 12rem;
 		overflow: hidden;
 		text-align: center;
 		position: relative;
@@ -117,22 +122,22 @@
 
 	.from {
 		position: absolute;
-		@include allsize(adaptiveSize(16));
+		@include allsize(16rem);
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: contain;
 		border-radius: 100%;
-		left: adaptiveSize(6);
-		top: adaptiveSize(9);
+		left: 6rem;
+		top: 9rem;
 	}
 
 	.stats {
 		position: absolute;
-		top: adaptiveSize(8);
-		right: adaptiveSize(12);
-		font-size: adaptiveSize(12);
+		top: 8rem;
+		right: 12rem;
+		font-size: 12rem;
 		letter-spacing: -0.08px;
-		line-height: adaptiveSize(18);
+		line-height: 18rem;
 		font-weight: 400;
 		color: var(--closeButtonFg);
 	}
@@ -145,9 +150,9 @@
 	}
 
 	.name {
-		font-size: adaptiveSize(14);
+		font-size: 14rem;
 		letter-spacing: -0.44px;
-		line-height: adaptiveSize(18);
+		line-height: 18rem;
 		font-weight: 500;
 	}
 

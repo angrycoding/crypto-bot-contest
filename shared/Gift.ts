@@ -1,21 +1,26 @@
+import User from "./User"
+
 interface Gift {
 	_id: string
 	giftId: string
-	image: string,
-	color: string
 	name: string,
+	image: string,
 	price: number,
-	left: number,
-	total: number
 	purchased: number
+	total: number
 	currency: string
+	color: string
 
 	status?: string,
-	userId?: string
+	from?: User,
+	to?: User
 	date?: number,
 	purchasePrice?: number
+
+
+
+	// userId?: string
 	instanceId?: string
-	from?: any
 }
 
 export default Gift;

@@ -2,21 +2,23 @@
 
 .wrapper {
 	display: flex;
-	position: absolute;
+	position: fixed;
 	inset: 0px;
 	flex-direction: column;
 }
 
 .header {
-	padding: adaptiveSize(10);
-	padding-bottom: adaptiveSize(8);
+	padding: 10rem;
+	padding-bottom: 8rem;
 
 
 	.inputWrapper {
 		position: relative;
 		color: #3C3C4399;
+		font-size: 17rem;
 		* {
 			color: inherit;
+			font-size: inherit;
 		}
 	}
 
@@ -29,7 +31,7 @@
 		
 
 		display: flex;
-		gap: adaptiveSize(8);
+		gap: 8rem;
 		align-content: center;
 		justify-content: center;
 		text-align: center;
@@ -38,10 +40,7 @@
 
 		&::before {
 			content: '';
-			min-width: 20px;
-			min-height: 20px;
-			max-width: 20px;
-			max-height: 20px;
+			@include allsize(20rem);
 			background-image: url('./search.svg');
 			background-position: center;
 			background-repeat: no-repeat;
@@ -53,18 +52,24 @@
 	input {
 		background-color: var(--searchFieldBg);;
 		border-radius: 10px;
-		padding: adaptiveSize(7);
+		padding: 7rem;
 		border-style: none;
 		outline: none;
 		display: block;
 		width: 100%;
 		color: var(--textColor) !important;
-		font-size: adaptiveSize(17);
 	}
 
-	input:not([value=""]) + .placeholder,
-	input:focus + .placeholder {
-		display: none !important;
+	input:not([value=""]) + .placeholder {
+		color: transparent !important;
+	}
+
+	input:focus {
+		padding-left: 32rem;
+		& + .placeholder {
+			padding-left: 7rem;
+			justify-content: flex-start;
+		}
 	}
 
 
@@ -72,13 +77,13 @@
 }
 
 .avatar {
-	margin-right: adaptiveSize(12);
-	@include allsize(adaptiveSize(40));
+	margin-right: 12rem;
+	@include allsize(40rem);
 }
 
 .noItems {
-	border-left: adaptiveSize(10) solid transparent;
-	border-right: adaptiveSize(10) solid transparent;
+	border-left: 10rem solid transparent;
+	border-right: 10rem solid transparent;
 }
 
 .scrollbox {
@@ -89,9 +94,9 @@
 		
 		
 		display: flex;
-		padding-left: adaptiveSize(16);
-		padding-top: adaptiveSize(8);
-		padding-bottom: adaptiveSize(8);
+		padding-left: 16rem;
+		padding-top: 8rem;
+		padding-bottom: 8rem;
 		align-items: center;
 		position: relative;
 		
@@ -100,44 +105,44 @@
 		&:not(:last-child)::after {
 			position: absolute;
 			bottom: 0px;
-			left: adaptiveSize(calc(16 + 40 + 12));
+			left: calc(16rem + 40rem + 12rem);
 			background-color: #3C3C435C;
 			height: 1px;
 			content: '';
-			right: adaptiveSize(16);
+			right: 16rem;
 		}
 
 		.name {
 			font-weight: 500;
-			font-size: adaptiveSize(17);
+			font-size: 17rem;
 			letter-spacing: -0.44px;
-			line-height: adaptiveSize(22);
+			line-height: 22rem;
 			display: flex;
 			align-items: center;
 			span {
 				font-weight: 500;
-				margin-left: adaptiveSize(6);
-				font-size: adaptiveSize(11);
+				margin-left: 6rem;
+				font-size: 11rem;
 				color: var(--closeButtonFg);
 				background-color: #8E8E9333;
-				line-height: adaptiveSize(14);
-				padding-left: adaptiveSize(4);
-				padding-right: adaptiveSize(4);
+				line-height: 14rem;
+				padding-left: 4rem;
+				padding-right: 4rem;
 				border-radius: 4px;
 			}
 		}
 
 		.count {
 			color: #007AFF;
-			font-size: adaptiveSize(13);
-			line-height: adaptiveSize(16);
+			font-size: 13rem;
+			line-height: 16rem;
 			letter-spacing: -0.1px;
 			display: flex;
 			align-items: center;
-			gap: adaptiveSize(6);
+			gap: 6rem;
 			&::before {
 				content: '';
-				@include allsize(adaptiveSize(12));
+				@include allsize(12rem);
 				background-image: url('./gift.svg');
 				background-position: center;
 				background-repeat: no-repeat;
@@ -149,10 +154,10 @@
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
-			right: adaptiveSize(16);
+			right: 16rem;
 			color: var(--closeButtonFg);
 			font-weight: 510;
-			font-size: adaptiveSize(15);
+			font-size: 15rem;
 			letter-spacing: -0.43px;
 
 			&::before  {
@@ -162,21 +167,21 @@
 			&[data-index="1"] {
 				&::before {
 					content: '🥇';
-					font-size: adaptiveSize(22);
+					font-size: 22rem;
 				}
 			}
 
 			&[data-index="2"] {
 				&::before {
 					content: '🥈';
-					font-size: adaptiveSize(22);
+					font-size: 22rem;
 				}
 			}
 
 			&[data-index="3"] {
 				&::before {
 					content: '🥉';
-					font-size: adaptiveSize(22);
+					font-size: 22rem;
 				}
 			}
 		

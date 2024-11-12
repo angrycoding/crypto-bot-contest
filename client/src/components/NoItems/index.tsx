@@ -3,17 +3,19 @@ import styles from './index.module.scss';
 import balloons from './emoji-balloons.json';
 import TabBar from '../TabBar';
 import useLanguage from '../../hooks/useLanguage';
+import clsx from 'clsx';
 
 const NoItems = (props: {
 	customTitle?: string,
-	hideAction?: boolean
+	hideAction?: boolean,
+	className?: string
 }) => {
 
-	const { customTitle, hideAction } = props;
+	const { customTitle, hideAction, className } = props;
 	const messages = useLanguage();
 
 	return (
-		<div className={styles.noItems}>
+		<div className={clsx(styles.noItems, className)}>
 			<Lottie options={{ autoplay: true, loop: false, animationData: balloons }} />
 			
 			<div>{customTitle || messages.youDontHaveGiftsYet}</div>

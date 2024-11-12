@@ -1,8 +1,8 @@
 import { Db } from "mongodb";
-import Operation from "../../../shared/Operation";
 import { UserDetails } from "../utils/getUserDetails";
+import Gift from "../../../shared/Gift";
 
-const getGiftOperations = async(db: Db, user: UserDetails, giftId: string): Promise<Operation[]> => {
+const getGiftOperations = async(db: Db, user: UserDetails, giftId: string): Promise<Gift[]> => {
 	try {
 		const purchasedAndReceivedGifts = db.collection('purchasedAndReceivedGifts');
 
@@ -49,11 +49,11 @@ const getGiftOperations = async(db: Db, user: UserDetails, giftId: string): Prom
 
 		result = result?.map?.(item => ({
 			...item,
-			toUser: {
+			to: {
 				...item?.toUser?.[0],
 				isMe: item?.toUser?.[0]?.userId === user.userId
 			},
-			user: {
+			from: {
 				...item?.user?.[0],
 				isMe: item?.user?.[0]?.userId === user.userId
 			}

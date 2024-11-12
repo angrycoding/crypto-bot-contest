@@ -34,7 +34,7 @@ const createPreload = async(distDir) => {
 	const indexPath = Path.resolve(distDir, 'index.html');
 	const indexBundle = await FS.readFile(indexPath, 'utf-8');
 
-	let files = await getFiles(distDir, [".svg", ".woff2"]);
+	let files = await getFiles(distDir, [".svg", ".woff2", ".ttf", ".png"]);
 	files = files.map((file) => Path.relative(distDir, file));
 	var $ = Cheerio.load(indexBundle, { decodeEntities: false });
 	for (const file of files) {
@@ -46,12 +46,24 @@ const createPreload = async(distDir) => {
 			);
 		}
 
+		
+		else if (file.endsWith('.ttf')) {
+			$("head").prepend(
+				`<link rel="preload" href="/${file}" as="font" fetchpriority="high" crossorigin />`
+			);
+		}
+
 		else if (file.endsWith('.svg')) {
 			$("head").prepend(
 				`<link rel="preload" href="/${file}" as="image" fetchpriority="high" />`
 			);
 		}
 
+		else if (file.endsWith('.png')) {
+			$("head").prepend(
+				`<link rel="preload" href="/${file}" as="image" fetchpriority="high" />`
+			);
+		}
 
 		
 	}

@@ -1,23 +1,20 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Store from './views/Store';
-import MyGifts from './views/MyGifts';
-import MyProfile from './views/MyProfile';
+import Store from './pages/Store';
+import MyGifts from './pages/MyGifts';
+import MyProfile from './pages/MyProfile';
 import TabBar from './components/TabBar';
-import useLanguage from './hooks/useLanguage';
-import LeaderBoard from './views/LeaderBoard';
-import ReceiveGift from './views/ReceiveGift';
+import LeaderBoard from './pages/LeaderBoard';
+import ReceiveGift from './pages/ReceiveGift';
 import BackButton from './components/BackButton';
-import ImageScreen from './components/ImageScreen';
 import ProfileScreen from './components/ProfileScreen';
-import BottomButtons from './components/BottomButtons';
 import usePurchasedGift from './hooks/usePurchasedGift';
 import getReceiveGiftInstanceId from './utils/getReceiveGiftInstanceId';
-import PurchasedGiftScreen from './views/PurchasedGiftScreen';
+import PurchasedGiftScreen from './pages/PurchasedGiftScreen';
+import MyRecentActions from './pages/MyRecentActions';
 
 
-export default () => {
+const App = () => {
 
-	const messages = useLanguage();
 	const navigate = useNavigate();
 	const purchasedGift = usePurchasedGift();
 	const receiveGiftInstanceId = getReceiveGiftInstanceId();
@@ -34,13 +31,11 @@ export default () => {
 		<div style={{display: (purchasedGift || receiveGiftInstanceId) ? 'none' : 'block'}}>
 			<Routes>
 				<Route path='/:giftId?' element={<Store />} />
-				<Route path='/gifts/:instanceId?' element={<MyGifts />} />
-
-
-				<Route path='/users/:userId' element={<ProfileScreen value={undefined} />} />
 				<Route path='/myprofile' element={<MyProfile />} />
 				<Route path='/leaderboard' element={<LeaderBoard />} />
-				<Route path='/myprofile' element={<MyProfile />} />
+				<Route path='/gifts/:instanceId?' element={<MyGifts />} />
+				<Route path='/myrecentactions' element={<MyRecentActions />} />
+				<Route path='/leaderboard/:userId' element={<ProfileScreen value={undefined} />} />
 
 			</Routes>
 
@@ -68,3 +63,5 @@ export default () => {
 	
 
 };
+
+export default App;

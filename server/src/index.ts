@@ -3,6 +3,7 @@ import HTTP from 'http';
 import HTTPS from 'https';
 import Path from 'path';
 import { Server } from 'socket.io';
+import Crypto from 'crypto';
 import ServerToClientEvents from '../../shared/ServerToClientEvents';
 import ClientToServerEvents from '../../shared/ClientToServerEvents';
 import { Db, MongoClient } from "mongodb";
@@ -23,6 +24,7 @@ import purchaseGift from './functions/purchaseGift';
 import getReceivedGifts from './functions/getReceivedGifts';
 import getMyRecentActions from './functions/getMyRecentActions';
 import SharedSettings from '../../shared/SharedSettings';
+import SmeeClient from 'smee-client';
 
 const uri = "mongodb://localhost";
 
@@ -53,11 +55,24 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 
 (async() => {
 
+	const webhookUrl = SharedSettings.isProduction ? Settings.BOT_HOOK_URL_SET : (() => {
+		const randomId = Crypto.randomUUID();
+		const webhookUrlSource = `https://smee.io/${randomId}`;
+		const webhookUrlTarget = `http://localhost:${Settings.WEBHOOK_SERVER_LISTEN_PORT}`;
+		const smee = new SmeeClient({
+			source: webhookUrlSource,
+			target: webhookUrlTarget,
+			logger: console
+		});
+		smee.start();
+		return webhookUrlSource;
+	})();
+
 
 	console.info(0, await sendTgRequest('deleteWebhook'))
 
 	console.info(1, await sendTgRequest('setWebhook', {
-		'url': Settings.BOT_HOOK_URL_SET
+		'url': webhookUrl
 	}))
 
 	await mongdbClient.connect();
@@ -157,7 +172,7 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 
 			ret({
 				userId: uid,
-				raiting: rating ? rating + 1 : 0,
+				raiting: rating === -1 ? 0 : rating + 1,
 				giftsReceived: user?.giftsReceived || [],
 				userName: user?.userName,
 				receivedGifts
@@ -181,14 +196,14 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 			if (!receiveInfo) return ret(undefined);
 
 
-			const { gift, ownerUserId, ownerUserName } = receiveInfo;
+			const { gift, owner } = receiveInfo;
 
 			// send message to the user who SENT THE GIFT
-			console.info(1, await sendText(ownerUserId, Messages.receivedYourGift[languageCode](userName, gift.name)));
+			console.info(1, await sendText(owner.userId, Messages.receivedYourGift[languageCode](userName, gift.name)));
 
 
 			// send message to the user who is receiving the gift
-			console.info(2, await sendText(userId, Messages.youReceivedGift[languageCode](ownerUserName, gift.name)));
+			console.info(2, await sendText(userId, Messages.youReceivedGift[languageCode](owner.userName, gift.name)));
 
 			const allUsers = [
 				`getReceivedGifts/${userId}`,
@@ -197,7 +212,7 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 
 			for (const socket of await socketIO.fetchSockets()) {
 
-				if (socket.data.userId === ownerUserId) {
+				if (socket.data.userId === owner.userId) {
 					socket.emit('update', [
 						...allUsers,
 						'getMyGifts',
@@ -226,10 +241,7 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 
 			return ret({
 				...gift,
-				from: {
-					userId: ownerUserId,
-					userName: ownerUserName
-				}
+				from: owner
 			});
 		});
 
@@ -239,20 +251,34 @@ const socketIO = new Server<ClientToServerEvents, ServerToClientEvents, {}, User
 
 
 		socket.on('getLeaderBoard', async(ret) => {
-			const result = await users.aggregate([
-				
 
-				{
-					$sort: {
-						giftsReceived: -1,
+			try {
+				const result = await users.aggregate([
+
+					{
+						$match: {
+							giftsReceived: {
+								$gt: 0
+							}
+						}
+					},
+
+					{
+						$sort: {
+							giftsReceived: -1,
+						}
 					}
-				}
 
-			]).toArray();
+				]).toArray();
 
+				return ret(result.map(item => ({
+					...item,
+					isMe: item?.userId === userId
+				})) as any);
 
-
-			ret(result as any);
+			} catch (e) {}
+			
+			ret([]);
 		});
 
 

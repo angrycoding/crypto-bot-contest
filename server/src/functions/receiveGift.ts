@@ -2,11 +2,11 @@ import { Db } from "mongodb";
 import Gift from "../../../shared/Gift";
 import getNonEmptyString from "../../../shared/getNonEmptyString";
 import { UserDetails } from "../utils/getUserDetails";
+import User from "../../../shared/User";
 
 const receiveGift = async(database: Db, instanceId: string, user: UserDetails): Promise<{
 	gift: Gift,
-	ownerUserId: string,
-	ownerUserName: string
+	owner: User
 } | undefined> => {
 
 	do try {
@@ -48,10 +48,12 @@ const receiveGift = async(database: Db, instanceId: string, user: UserDetails): 
 
 		if (!purchase) break;
 
-		const ownerUserName = getNonEmptyString(purchase?.user?.[0]?.userName);
-		if (!ownerUserName) break;
+		const ownerUser = purchase?.user?.[0];
+		if (!ownerUser) break;
 
-		const ownerUserId = getNonEmptyString(purchase?.user?.[0]?.userId);
+
+
+		const ownerUserId = getNonEmptyString(ownerUser?.userId);
 		if (!ownerUserId) break;
 
 
@@ -96,8 +98,7 @@ const receiveGift = async(database: Db, instanceId: string, user: UserDetails): 
 
 		return {
 			gift: purchase?.gift?.[0],
-			ownerUserId,
-			ownerUserName
+			owner: ownerUser
 		};
 
 

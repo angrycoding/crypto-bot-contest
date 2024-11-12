@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import SocketIO from "../utils/SocketIO";
-import Operation from "../../../shared/Operation";
+import Gift from "../../../shared/Gift";
 
-let cache: {[giftId: string]: Operation[]} = {}
+let cache: {[giftId: string]: Gift[]} = {}
 
-const useGiftRecentActions = (giftId: string | undefined): Operation[] => {
+const useGiftRecentActions = (giftId: string | undefined): Gift[] => {
 
 
-	const [ result, setResult ] = useState<Operation[]>(cache?.[giftId || ''] || []);
+	const [ result, setResult ] = useState<Gift[]>(cache?.[giftId || ''] || []);
 
-	const updateOperations = (giftId: string, operations: Operation[]) => {
+	const updateOperations = (giftId: string, operations: Gift[]) => {
 		cache[giftId] = operations;
 		setResult(operations);
 	}

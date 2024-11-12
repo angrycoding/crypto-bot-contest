@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Gift from "../../../shared/Gift";
 import useForceUpdate from "./useForceUpdate";
 

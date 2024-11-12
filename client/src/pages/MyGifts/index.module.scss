@@ -4,32 +4,32 @@
 	position: fixed;
 	inset: 0px;
 	overflow: auto;
-	padding-left: adaptiveSize(16);
-	padding-right: adaptiveSize(16);
-	padding-bottom: calc( adaptiveSize(16) + var(--tabbarheight) );
+	padding-left: 16rem;
+	padding-right: 16rem;
+	padding-bottom: calc( 16rem + var(--tabbarheight) );
 	& > *:first-child {
-		padding-top: adaptiveSize(24);
-		padding-bottom: adaptiveSize(24);
+		padding-top: 24rem;
+		padding-bottom: 24rem;
 	}
 }
 
 
 .grid {
 	display: grid;
-	column-gap: adaptiveSize(8);
-	row-gap: adaptiveSize(8);
+	column-gap: 8rem;
+	row-gap: 8rem;
 	grid-template-columns: 1fr 1fr 1fr;
 	color: var(--closeButtonFg);
-	font-size: adaptiveSize(12);
+	font-size: 12rem;
 	letter-spacing: -0.08px;
 
 	& > * {
 		border-radius: 12px;
 		background-color: var(--closeButtonBg);
-		padding-left: adaptiveSize(16);
-		padding-right: adaptiveSize(16);
-		padding-top: adaptiveSize(8);
-		padding-bottom: adaptiveSize(12);
+		padding-left: 16rem;
+		padding-right: 16rem;
+		padding-top: 8rem;
+		padding-bottom: 12rem;
 	}
 
 	.name {
@@ -38,7 +38,7 @@
 
 	.image {
 		aspect-ratio: 1/1;
-		margin-bottom: adaptiveSize(8);
+		margin-bottom: 8rem;
 		background-position: center;
 		background-size: contain;
 		background-repeat: no-repeat;
@@ -48,13 +48,13 @@
 		background-color: #007AFF;
 		border-radius: 100px;
 		color: white;
-		padding-top: adaptiveSize(6);
-		padding-bottom: adaptiveSize(6);
-		// padding-left: adaptiveSize(16);
-		// padding-right: adaptiveSize(16);
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+		// padding-left: 16rem;
+		// padding-right: 16rem;
 		font-weight: 600;
 		text-align: center;
-		font-size: adaptiveSize(13);
+		font-size: 13rem;
 		letter-spacing: -0.08px;
 	}
 

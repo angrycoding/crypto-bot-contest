@@ -1,0 +1,15 @@
+@import '../../index.module.scss';
+
+.themeSwitch {
+	position: absolute;
+	z-index: 1;
+	left: 16rem;
+	top: 6rem;
+}
+
+.langSwitch {
+	z-index: 1;
+	position: absolute;
+	top: 6rem;
+	right: 16rem;
+}

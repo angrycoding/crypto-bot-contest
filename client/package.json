@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "parse-css-color": "^0.2.1",
     "react-lottie": "^1.2.4",
     "react-router-dom": "^6.28.0",

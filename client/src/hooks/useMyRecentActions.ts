@@ -1,17 +1,51 @@
 import { useEffect, useState } from "react";
 import SocketIO from "../utils/SocketIO";
-import RecentAction from "../../../shared/RecentAction";
+import useLanguage from "./useLanguage";
+import {format} from "date-fns/format";
+import { ru } from "date-fns/locale/ru";
+import { enUS } from "date-fns/locale/en-US";
+import Gift from "../../../shared/Gift";
 
-let cache: RecentAction[] | undefined = undefined;
+type RecentActionMap = {[date: string]: Gift[]} | undefined;
 
-const useMyRecentActions = (): RecentAction[] | undefined => {
+let cache: RecentActionMap = undefined;
 
 
-	const [ result, setResult ] = useState<RecentAction[] | undefined>(cache);
+const arrayGroup = (array: any[], filter: (value: any) => string) => {
 
-	const updateMyRecentActions = (recentActions: RecentAction[]) => {
-		cache = recentActions;
-		setResult(recentActions);
+	const result: {[key: string]: any[]} = {};
+
+	for (let c = 0; c < array.length; c++) {
+		
+		
+		const res = filter(array[c]);
+
+		if (!result.hasOwnProperty(res)) {
+			result[res] = [];
+		}
+
+		result[res].push(
+			array[c]
+		)
+
+
+	}
+
+	return result;
+
+}
+
+
+const useMyRecentActions = (): RecentActionMap => {
+
+	const currentLang = useLanguage.getLang();
+	const [ result, setResult ] = useState<RecentActionMap>(cache);
+
+	const updateMyRecentActions = (recentActions: Gift[]) => {
+		setResult(cache = arrayGroup(recentActions, ((action: Gift) => {
+			const dateObj = new Date(action.date || 0);
+			return format (dateObj, "dd MMMM", { locale: currentLang === 'ru' ? ru : enUS })
+		})));
 	}
 	
 	const updateHappened = (what: string[]) => {
@@ -29,7 +63,7 @@ const useMyRecentActions = (): RecentAction[] | undefined => {
 			SocketIO.off('update', updateHappened);
 		}
 
-	}, []);
+	}, [currentLang]);
 
 
 	return result;

@@ -1,54 +1,159 @@
 @import '../../index.module.scss';
 
-:root:has(.overlayBack) * {
-	pointer-events: none;
-	-ms-overflow-style: none; /* for Internet Explorer, Edge */
-	scrollbar-width: none; /* for Firefox */
-	&::-webkit-scrollbar {
-		display: none; /* for Chrome, Safari, and Opera */
-	}
-}
+$animationSpeed: 200ms;
 
-.overlayBack {
+
+.wrapper {
 	position: fixed;
-	top: 0px;
-	left: 0px;
-	bottom: 0px;
-	right: 0px;
-	z-index: 100;
-	backdrop-filter: blur(1px);
+	inset: 0px;
+	z-index: 10000;
+
+	
+
+
 	&::before {
+		backdrop-filter: blur(1px);
+		position: fixed;
+		inset: 0px;
 		content: '';
-		position: absolute;
+		opacity: var(--expanded);
+		transition-duration: $animationSpeed;
+		transition-property: all;
+	}
+	
+
+	&::after {
+		content: '';
+		position: fixed;
 		inset: 0px;
 		background-color: black;
+		opacity: calc(var(--expanded) / 2);
+		transition-duration: $animationSpeed;
+		transition-property: all;
+	}
+
+
+	.children {
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		z-index: 101;
+		bottom: 0px;
+		transform: translateY(calc((1 - var(--expanded)) * 100%));
+		opacity: var(--overlayOpacity);
+		filter: blur(calc((1 - var(--expanded)) * 10px));
+		transition-duration: $animationSpeed;
+		transition-timing-function: linear;
+		transition-property: all;
+	}
+	
+}
+
+// :root:has(.overlayBack) * {
+// 	pointer-events: none;
+// 	-ms-overflow-style: none; /* for Internet Explorer, Edge */
+// 	scrollbar-width: none; /* for Firefox */
+// 	&::-webkit-scrollbar {
+// 		display: none; /* for Chrome, Safari, and Opera */
+// 	}
+// }
+
+// .overlayBack {
+// 	position: fixed;
+// 	top: 0px;
+// 	left: 0px;
+// 	bottom: 0px;
+// 	right: 0px;
+// 	z-index: 100;
+// 	backdrop-filter: blur(1px);
+// 	&::before {
+// 		content: '';
+// 		position: absolute;
+// 		inset: 0px;
+// 		background-color: black;
+// 		opacity: 0.5;
+// 	}
+// }
+
+
+.expand {
+
+	&::before {
+		opacity: 1;
+	}
+
+	&::after {
 		opacity: 0.5;
+	}
+
+	.children {
+		animation-name: expand;
+		animation-duration: $animationSpeed;
+		animation-fill-mode: forwards;
+	}
+
+
+	
+
+	// .children {
+	// 	visibility: visible;
+	// }
+}
+
+.clone .children {
+	top: unset;
+	bottom: 0px;
+}
+
+
+.collapse {
+
+	&::before {
+		opacity: 0;
+	}
+
+	&::after {
+		opacity: 0;
+	}
+
+	.children {
+		animation-name: collapse;
+		animation-duration: $animationSpeed;
+		animation-fill-mode: forwards;
 	}
 }
 
 .overlay {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
+	// position: fixed;
+	// top: 100vh;
+	// bottom: 0px;
+	// left: 0px;
+	// right: 0px;
 	color: var(--textColor);
 	background-color: var(--overlayColor);
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	z-index: 100;
-	padding-top: adaptiveSize(22.25);
-	padding-left: adaptiveSize(16);
-	padding-right: adaptiveSize(16);
-	padding-bottom: adaptiveSize(16);
+	// z-index: 100;
+	padding-top: 22.25rem;
+	padding-left: 16rem;
+	padding-right: 16rem;
+	padding-bottom: 16rem;
+
+
+	// transition-property: top;
+	// transition-duration: 1000ms;
 }
+
+
+
 
 .close {
 	z-index: 10;
 	position: absolute;
 	pointer-events: all !important;
-	@include allsize(adaptiveSize(30));
-	right: adaptiveSize(16);
-	top: adaptiveSize(12);
+	@include allsize(30rem);
+	right: 16rem;
+	top: 12rem;
 	background-color: var(--closeButtonBg);
 	border-radius: 100%;
 	&::before {
@@ -63,7 +168,7 @@
 }
 
 .image {
-	margin-bottom: adaptiveSize(12);
+	margin-bottom: 12rem;
 	display: flex;
 	justify-content: center;
 	background-image: url('./stars.svg');
@@ -72,7 +177,7 @@
 	background-position: center;
 	&::before {
 		content: '';
-		@include allsize(adaptiveSize(137));
+		@include allsize(137rem);
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: contain;
@@ -81,9 +186,9 @@
 }
 
 .title {
-	font-size: adaptiveSize(24);
-	line-height: adaptiveSize(32);
-	margin-bottom: adaptiveSize(24);
+	font-size: 24rem;
+	line-height: 32rem;
+	margin-bottom: 24rem;
 	font-weight: 600;
 	text-align: center;
 }
@@ -95,25 +200,36 @@
 	row-gap: 1px;
 	border-radius: 12px;
 	overflow: hidden;
+	
 	& > * {
 		background-color: var(--closeButtonBg);
-		padding-left: adaptiveSize(16);
-		padding-top: adaptiveSize(10);
-		padding-bottom: adaptiveSize(10);
-		padding-right: adaptiveSize(16);
-		font-size: adaptiveSize(17);
+		padding-left: 16rem;
+		padding-top: 10rem;
+		padding-bottom: 10rem;
+		padding-right: 16rem;
+		font-size: 17rem;
 		letter-spacing: -0.44px;
-		&:nth-child(odd) {
-			color: var(--closeButtonFg);
-		}
 		display: flex;
 		align-items: center;
-		gap: adaptiveSize(6);
+		gap: 6rem;
+		&:nth-child(odd) {
+			color: var(--closeButtonFg);
+			text-transform: capitalize;
+		}
+	}
+
+	.avatar {
+		@include allsize(20rem);
+	}
+
+	*:has(.avatar) {
+		color: #007AFF;
+		pointer-events: all;
 	}
 
 	.priceIcon {
 
-		@include allsize(adaptiveSize(20));
+		@include allsize(20rem);
 		background-color: var(--currencyColor);
 		border-radius: 100%;
 		position: relative;

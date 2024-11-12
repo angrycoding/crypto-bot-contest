@@ -94,7 +94,7 @@ const AnimationView = class extends React.Component<{ children: any }> {
 
 		for (const s of symbols) s.remove();
 
-		for (const [ from, to ] of pairs) {
+		for (const [ _, to ] of pairs) {
 			to.style.visibility = '';
 		}
 
@@ -113,12 +113,14 @@ const AnimationView = class extends React.Component<{ children: any }> {
 			clone.dataset.clone = '1';
 		}
 
+		// window.setTimeout(() => {
 		window.requestAnimationFrame(() => {
 			if (!AnimationView.instanceCount) {
 				// @ts-ignore
 				clone.remove();
 			}
 		});
+		// }, 100);
 	}
 
 	render() {

@@ -1,0 +1,93 @@
+@import '../../index.module.scss';
+
+.wrapper {
+	position: fixed;
+	inset: 0px;
+	border-left: 16rem solid transparent;
+	border-right: 16rem solid transparent;
+	overflow: auto;
+}
+
+.header {
+	margin-top: 24rem;
+	margin-bottom: 28rem;
+}
+
+.recentActions {
+	color: var(--textColor);
+	margin-top: 28rem;
+}
+
+.date {
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 13rem;
+	line-height: 18rem;
+	letter-spacing: -0.08px;
+	margin-bottom: 12rem;
+	margin-top: 24rem;
+}
+
+.recentAction {
+
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding-bottom: 9rem;
+	padding-top: 9rem;
+	gap: 12rem;
+
+	&  > *:first-child {
+		flex: 1;
+	}
+
+	& > *:nth-child(2) {
+		font-size: 15rem;
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	&::before {
+		content: '';
+		background-color: var(--closeButtonBg);
+		background-image: var(--image);
+		min-width: 40rem;
+		min-height: 40rem;
+		background-position: center;
+		background-size: contain;
+		border-radius: 10px;
+	}
+
+	&:not(:last-child)::after {
+		background-color: #3C3C435C;
+		height: 1px;
+		left: calc(40rem + 12rem);
+		content: '';
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+	}
+	
+	.giftName {
+		font-weight: 500;
+		font-size: 17rem;
+		line-height: 22rem;
+	}
+
+	.name {
+		font-size: 15rem;
+		letter-spacing: -0.43px;
+		color: #007AFF;
+		display: inline-block;
+	}
+
+	.operation {
+		font-size: 13rem;
+		line-height: 16rem;
+		font-weight: 400;
+		color: var(--closeButtonFg);
+	}
+	
+}

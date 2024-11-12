@@ -55,18 +55,23 @@ const getMyRecentActions = async(database: Db, user: UserDetails) => {
 		]).toArray();
 
 
-		return (
-			result.map(i => i.type === 'sent' && i.toUserId === userId ? ({
-				...i,
-				gift: i.gift[0],
-				type: 'received',
-				from: i?.from?.[0]
-			}) : ({
-				...i,
-				gift: i.gift[0],
-				to: i?.to?.[0]
-			}))
-		);
+		return result.map(item => ({
+			...item?.gift?.[0],
+			
+			from: {
+				...item?.from?.[0],
+				isMe: item?.from?.[0]?.userId === userId
+			},
+
+			to: {
+				...item?.to?.[0],
+				isMe: item?.to?.[0]?.userId === userId
+			},
+
+			date: item?.date,
+			status: item?.status,
+			purchasePrice: item?.purchasePrice
+		}));
 
 	}
 	catch (e) {}

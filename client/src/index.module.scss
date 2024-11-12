@@ -1,9 +1,3 @@
-
-
-@function adaptiveSize($px) {
-    @return calc($px / 393 * 100vmin);
-}
-
 @mixin allsize($size) {
 	min-width: $size;
 	min-height: $size;
@@ -16,40 +10,46 @@
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 300;
-	src: url("../public/fonts/SFProText-Light.ttf");
+	src: url("./fonts/SFProText-Light.ttf");
   }
   @font-face {
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 400;
-	src: url("../public/fonts/SFProText-Regular.ttf");
+	src: url("./fonts/SFProText-Regular.ttf");
   }
   @font-face {
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 500;
-	src: url("../public/fonts/SFProText-Medium.ttf");
+	src: url("./fonts/SFProText-Medium.ttf");
   }
   @font-face {
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 600;
-	src: url("../public/fonts/SFProText-SemiBold.ttf");
+	src: url("./fonts/SFProText-SemiBold.ttf");
   }
   @font-face {
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 700;
-	src: url("../public/fonts/SFProText-Bold.ttf");
+	src: url("./fonts/SFProText-Bold.ttf");
   }
   @font-face {
 	font-family: "SF Pro Text";
 	font-style: normal;
 	font-weight: 900;
-	src: url("../public/fonts/SFProText-Heavy.ttf");
+	src: url("./fonts/SFProText-Heavy.ttf");
   }
 
 html {
+	font-size: 1 / 393 * 100vmin;
+}
+
+html, body {
+	position: fixed;
+	inset: 0px;
 	padding: 0px !important;
 	margin: 0px !important;
 }
@@ -57,7 +57,6 @@ html {
 * {
 	box-sizing: border-box !important;
 	font-family: 'SF Pro Text' !important;
-	// overflow-x: hidden;
 }
 
 .appWrapper {

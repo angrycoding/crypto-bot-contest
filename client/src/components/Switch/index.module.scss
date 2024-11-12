@@ -7,9 +7,9 @@
 	
 	border: 2px solid transparent;
 	display: inline-flex;
-	font-size: adaptiveSize(14);
+	font-size: 14rem;
 
-	border-radius: adaptiveSize(99);
+	border-radius: 99rem;
 	position: relative;
 	font-weight: 590;
 	background-color: var(--switchBg);
@@ -26,8 +26,8 @@
 		transition-duration: 250ms;
 		transition-timing-function: linear;
 
-		min-height: adaptiveSize(32);
-		min-width: adaptiveSize(32);
+		min-height: 32rem;
+		min-width: 32rem;
 
 		
 		// min-width: ;

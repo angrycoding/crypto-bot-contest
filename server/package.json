@@ -5,12 +5,13 @@
 	},
 	"engines": {
 		"node": ">=21.0.0"
-	  },
+	},
 	"devDependencies": {
 		"@types/node": "^22.8.4",
 		"esmify": "^2.1.1",
 		"nodemon": "^3.1.7",
-		"recursive-readdir": "^2.2.3"
+		"recursive-readdir": "^2.2.3",
+		"smee-client": "^2.0.4"
 	},
 	"dependencies": {
 		"browserify": "^17.0.1",

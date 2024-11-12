@@ -12,8 +12,7 @@ type TabId =
 	'store' |
 	'gifts' |
 	'leaderboard' |
-	'myprofile' |
-	'inactive'
+	'myprofile'
 
 
 type TabBarItem = {
@@ -75,7 +74,7 @@ const TabBarBase = (
 
 	}, []);
 
-	return <div className={clsx(styles.tabbar, value === 'inactive' && styles.tabbarHide)}>
+	return <div className={styles.tabbar}>
 
 			{tabBarItems.map((item, index) => (
 				

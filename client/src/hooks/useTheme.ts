@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import theme from '../index.module.scss';
 import useForceUpdate from "./useForceUpdate";
-import parseCSSColor, { Result } from "parse-css-color";
+import parseCSSColor from "parse-css-color";
 
 type RealTheme = 'light' | 'dark';
 
@@ -18,7 +18,11 @@ const getRealTheme = () => {
 	return Telegram.WebApp.colorScheme || 'light' as any;
 }
 
-const useThemeBase = (): [ RealTheme, SelectedTheme, (theme: SelectedTheme) => void ] => {
+const useThemeBase = (): {
+	realTheme: RealTheme,
+	selectedTheme: SelectedTheme,
+	setTheme: (theme: SelectedTheme) => void
+} => {
 
 	const forceUpdate = useForceUpdate();
 
@@ -37,11 +41,11 @@ const useThemeBase = (): [ RealTheme, SelectedTheme, (theme: SelectedTheme) => v
 		}
 	}
 
-	return [
-		getRealTheme(),
-		getSelectedTheme(),
-		setCurrentTheme
-	]
+	return {
+		realTheme: getRealTheme(),
+		selectedTheme: getSelectedTheme(),
+		setTheme: setCurrentTheme
+	}
 
 }
 

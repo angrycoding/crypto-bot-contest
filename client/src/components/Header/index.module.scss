@@ -1,14 +1,34 @@
 @import '../../index.module.scss';
 
+
+@keyframes spin {
+	from {
+		scale: 1;
+
+	}
+	to {
+		scale: .5;
+	}
+  }
+  
+
 .header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+
+	// animation: spin linear both;
+	// animation-timeline: scroll();
+
+	& > * {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		transform: scale(var(--zoom));
+		transform-origin: center bottom;
+	}
 	
 	.image {
-		margin-bottom: adaptiveSize(16);
-		@include allsize(adaptiveSize(48));
+		margin-bottom: 16rem;
+		@include allsize(48rem);
 		background-image: url('./headericon.svg');
 		background-position: center;
 		background-repeat: no-repeat;
@@ -17,13 +37,13 @@
 	
 	.title {
 		font-weight: 600;
-		font-size: adaptiveSize(24);
-		margin-bottom: adaptiveSize(12);
+		font-size: 24rem;
+		margin-bottom: 12rem;
 		color: var(--textColor);
 	}
 	
 	.subtitle {
-		font-size: adaptiveSize(17);
+		font-size: 17rem;
 		color: #8E8E93;
 	}
 }

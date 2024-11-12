@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "../../components/Header";
 import styles from './index.module.scss';
 import NoItems from "../../components/NoItems";
@@ -7,6 +6,7 @@ import useMyGiftList from "../../hooks/useMyGiftList";
 import Gift from "../../../../shared/Gift";
 import useLanguage from "../../hooks/useLanguage";
 import { useNavigate, useParams } from "react-router-dom";
+import Preloader from "../../components/Preloader";
 
 const MyGifts = () => {
 
@@ -16,6 +16,9 @@ const MyGifts = () => {
 	const myGifts = useMyGiftList();
 
 	const sendGift = myGifts?.find(g => g.instanceId === instanceId);
+
+
+	if (!myGifts) return <Preloader />
 
 	
 	return <div className={styles.wrapper}>

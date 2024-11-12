@@ -6,19 +6,17 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import useLanguage from '../../hooks/useLanguage';
 import BottomButtons from '../../components/BottomButtons';
-import BackButton from '../../components/BackButton';
 import useGiftList from '../../hooks/useGiftList';
 import SocketIO from '../../utils/SocketIO';
 import User from '../../../../shared/User';
 import useGiftRecentActions from '../../hooks/useGiftRecentActions';
 import AnimationView from '../../components/AnimationView';
-import MyProfile from '../MyProfile';
-import ProfileScreen from '../../components/ProfileScreen';
 import Avatar from '../../components/Avatar';
 import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 import currencyInfo from '../../utils/currencyInfo';
 import formatItems from '../../utils/formatItems';
+import Preloader from '../../components/Preloader';
 
 
 
@@ -39,18 +37,9 @@ const Store = () => {
 
 	const navigateToUserProfile = (user?: User) => {
 		if (!user) return;
-		navigate(user.isMe ? '/myprofile' : `/users/${user.userId}`);
+		navigate(user.isMe ? '/myprofile' : `/leaderboard/${user.userId}`);
 	}
-	
-	
-	
-	const setActiveGiftId = (...args: any[]) => {
-
-	}
-
-	const [ user, setUser ] = useState<User>();
-
-	
+		
 	const doPurchase = () => {
 		if (!activeGiftId) return;
 		setIsPurchasing(true);
@@ -64,45 +53,8 @@ const Store = () => {
 		});
 	}
 
-	const onScroll = (event: React.UIEvent) => {
-		const { target } = event;
-		if (!(target instanceof HTMLElement)) return;
-		// console.info(target.scrollTop)
-
-		const x = document.querySelector(`.${CSS.escape(styles.header)}`);
-		if (!(x instanceof HTMLElement)) return;
-
-
-		// @ts-ignore
-		x.style.zoom = (100 - target.scrollTop / 300 * 100) / 100 + '';
-		console.info()
-
-	}
-
 	
-	if (user && user.isMe) {
-		return <>
-			<BackButton onClick={() => setUser(undefined)} />
-			<MyProfile />
-			<TabBar value="myprofile" onChange={action => {
-				if (action === 'myprofile') return;
-				if (action === 'store') {
-					setUser(undefined);
-					setActiveGiftId(undefined);
-				} else {
-					TabBar.navigate(action);
-				}
-			}} />
-		</>
-	}
-
-	if (user && !user.isMe) {
-		return <>
-			<TabBar.Hide />
-			<BackButton onClick={() => setUser(undefined)} />
-			<ProfileScreen value={user} />
-		</>
-	}
+	if (!gifts) return <Preloader />
 
 
 	const activeItem = gifts?.find(gift => gift.giftId === activeGiftId);
@@ -112,7 +64,7 @@ const Store = () => {
 		{(!activeItem && gifts) && (
 			<AnimationView key="list">
 				<div className={styles.listView}>
-					<div className={styles.scrollbox} onScroll={onScroll}>
+					<div className={styles.scrollbox}>
 						<Header withImage={true} title={messages.buyAndSend} subtitle={messages.uniqueGifts} />
 						<div className={styles.grid}>
 							{gifts.map(gift => (
@@ -200,12 +152,12 @@ const Store = () => {
 							{messages.recentActions}
 						</div>
 
-						{recentActions.map(operation => <div key={operation._id}>
+						{recentActions.map(operation => operation.from && <div key={operation._id}>
 
 							<Avatar
 								className={styles.avatar}
-								userId={operation.user.userId}
-								onClick={() => navigateToUserProfile(operation.user)}
+								userId={operation.from.userId}
+								onClick={() => navigateToUserProfile(operation.from)}
 								operation={operation.status === 'received' ? 'send' : 'buy'}
 							/>
 							
@@ -215,25 +167,25 @@ const Store = () => {
 								{operation.status === 'purchased' && <>
 									<div>{messages.buyGift}</div>
 									<div>
-										<span onClick={() => navigateToUserProfile(operation.user)}>
-											{operation.user.isMe ? messages.you : operation.user.userName}
+										<span onClick={() => navigateToUserProfile(operation.from)}>
+											{operation.from.isMe ? messages.you : operation.from.userName}
 										</span>
 										{' '}
-										{operation.user.isMe ? messages.youBoughtGift : messages.boughtGift}
+										{operation.from.isMe ? messages.youBoughtGift : messages.boughtGift}
 									</div>
 								</>}
 
 								{operation.status === 'received' && <>
 									<div>{messages.sendGiftAction}</div>
 									<div>
-										<span onClick={() => navigateToUserProfile(operation.user)}>
-											{operation.user.isMe ? messages.you : operation.user.userName}
+										<span onClick={() => navigateToUserProfile(operation.from)}>
+											{operation.from.isMe ? messages.you : operation.from.userName}
 										</span>
 										{' '}
-										{operation.user.isMe ? messages.youSentGiftTo : messages.sentGiftTo}
+										{operation.from.isMe ? messages.youSentGiftTo : messages.sentGiftTo}
 										{' '}
-										<span onClick={() => navigateToUserProfile(operation.toUser)}>
-											{operation.toUser?.isMe ? messages.you : operation.toUser?.userName}
+										<span onClick={() => navigateToUserProfile(operation.to)}>
+											{operation.to?.isMe ? messages.you : operation.to?.userName}
 										</span>
 									</div>
 								</>}
