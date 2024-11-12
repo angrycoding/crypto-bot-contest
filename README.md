@@ -4,7 +4,7 @@ https://t.me/CryptoBotRU/365
 
 All the contest files (designs, animations and task description) is on the contest-files dir.
 
-https://github.com/user-attachments/assets/3e907795-5e10-4668-8d41-7b6af870c6db
+See the showcase on the following video: https://www.youtube.com/watch?v=hGgdoX31LNc
 
 ## Lottie converter
 
