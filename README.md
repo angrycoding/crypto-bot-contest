@@ -11,6 +11,7 @@ See the showcase on the following video: https://www.youtube.com/watch?v=hGgdoX3
 ## Telegram bot
 
 Is available here: https://t.me/giftapp_miniapp_bot
+
 Telegram mini app: http://t.me/giftapp_miniapp_bot/app
 
 
