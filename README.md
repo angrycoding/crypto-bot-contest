@@ -1,6 +1,6 @@
 # Crypto Bot contest task
 
-https://t.me/CryptoBotRU/365
+**Original task announcement**: https://t.me/CryptoBotRU/365
 
 **Crypto Pay API docs**: https://help.crypt.bot/crypto-pay-api
 
