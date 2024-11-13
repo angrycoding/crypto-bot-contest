@@ -2,6 +2,14 @@
 
 https://t.me/CryptoBotRU/365
 
+**Crypto Pay API docs**: https://help.crypt.bot/crypto-pay-api
+
+**Original task description**: https://docs.google.com/document/d/1pERxKPbyLSV3ytT0KBavsOhkIS343wrwy4SwUFHxlh0/edit?tab=t.0#heading=h.noi33qd163ti
+
+**Telegram bot API docs**: https://core.telegram.org/bots/api
+
+**Telegram mini apps docs**: https://core.telegram.org/bots/webapps
+
 All the contest files (designs, animations and task description) is on the contest-files dir.
 
 See the showcase on the following video: https://www.youtube.com/watch?v=hGgdoX31LNc
