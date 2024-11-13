@@ -10,6 +10,8 @@ https://t.me/CryptoBotRU/365
 
 **Telegram mini apps docs**: https://core.telegram.org/bots/webapps
 
+**Figma**: https://www.figma.com/design/yXbgwwUeLIiIYneiH9WnkZ/Crypto-Bot-Contest?node-id=0-1&node-type=canvas&t=oEIQFWqVBAcPB6AK-0
+
 All the contest files (designs, animations and task description) is on the contest-files dir.
 
 See the showcase on the following video: https://www.youtube.com/watch?v=hGgdoX31LNc
